@@ -16,7 +16,7 @@ import java.util.Random;
 
 public class StepHandler {
     private static final Random RANDOM = new Random();
-
+    private static final int ENEMY_AVOID_RADIUS = 1;
     public static void handleStep(GameMap gameMap, Hero hero) throws IOException {
         if (gameMap == null || hero == null) return;
 
@@ -33,7 +33,15 @@ public class StepHandler {
                 moveToTarget(hero, gameMap, current, nearestGun, avoid);
                 return;
             }
+        } else {
+            Weapon betterGun = getBetterGun(gameMap.getAllGun(), inv.getGun(), current);
+            if (betterGun != null) {
+                moveToTarget(hero, gameMap, current, betterGun, avoid);
+                return;
+            }
         }
+
+
 
         Enemy nearestEnemy = getNearestEnemy(gameMap.getListEnemies(), current);
         if (nearestEnemy != null && PathUtils.distance(current, nearestEnemy) == 1 && player.getHealth() > 50) {
@@ -53,7 +61,7 @@ public class StepHandler {
             Node center = new Node(gameMap.getMapSize() / 2, gameMap.getMapSize() / 2);
             String path = PathUtils.getShortestPath(gameMap, avoid, current, center, false);
             if (path != null && !path.isEmpty()) {
-                moveOneStep(hero, gameMap, current, path.charAt(0));
+                moveOneStep(hero, gameMap, current, path.charAt(0), avoid);
                 return;
             }
         }
@@ -69,13 +77,24 @@ public class StepHandler {
             return;
         }
 
-        moveRandom(hero, gameMap, current);
+        moveRandom(hero, gameMap, current, avoid);
     }
 
     private static List<Node> getRestrictedNodes(GameMap gameMap) {
         List<Node> nodes = new ArrayList<>(gameMap.getListIndestructibles());
         nodes.removeAll(gameMap.getObstaclesByTag("CAN_GO_THROUGH"));
         nodes.addAll(gameMap.getOtherPlayerInfo());
+        for (Enemy e : gameMap.getListEnemies()) {
+            for (int dx = -ENEMY_AVOID_RADIUS; dx <= ENEMY_AVOID_RADIUS; dx++) {
+                for (int dy = -ENEMY_AVOID_RADIUS; dy <= ENEMY_AVOID_RADIUS; dy++) {
+                    int nx = e.getX() + dx;
+                    int ny = e.getY() + dy;
+                    if (nx >= 0 && ny >= 0 && nx < gameMap.getMapSize() && ny < gameMap.getMapSize()) {
+                        nodes.add(new Node(nx, ny));
+                    }
+                }
+            }
+        }
         return nodes;
     }
 
@@ -91,6 +110,25 @@ public class StepHandler {
         }
         return nearest;
     }
+
+    private static Weapon getBetterGun(List<Weapon> guns, Weapon currentGun, Node current) {
+        if (guns == null) return null;
+        Weapon best = null;
+        double min = Double.MAX_VALUE;
+        int curDamage = currentGun != null ? currentGun.getDamage() : 0;
+        for (Weapon g : guns) {
+            if (g.getDamage() > curDamage) {
+                double d = PathUtils.distance(current, g);
+                if (d < min) {
+                    min = d;
+                    best = g;
+                }
+            }
+        }
+        return best;
+    }
+
+
 
     private static HealingItem getNearestHealing(List<HealingItem> items, Node current) {
         HealingItem nearest = null;
@@ -136,39 +174,42 @@ public class StepHandler {
     private static void moveToTarget(Hero hero, GameMap map, Node current, Node target, List<Node> avoid) throws IOException {
         String path = PathUtils.getShortestPath(map, avoid, current, target, false);
         if (path == null) {
-            moveRandom(hero, map, current);
+            moveRandom(hero, map, current, avoid);
             return;
         }
         if (path.isEmpty()) {
             hero.pickupItem();
             return;
         }
-        moveOneStep(hero, map, current, path.charAt(0));
+        moveOneStep(hero, map, current, path.charAt(0), avoid);
     }
 
-    private static void moveOneStep(Hero hero, GameMap map, Node current, char dir) throws IOException {
+    private static void moveOneStep(Hero hero, GameMap map, Node current, char dir, List<Node> avoid) throws IOException {
         Node next = new Node(current.x, current.y);
         if (dir == 'l') next.x--;
         if (dir == 'r') next.x++;
         if (dir == 'u') next.y--;
         if (dir == 'd') next.y++;
-        if (isBlocked(map, next)) {
-            moveRandom(hero, map, current);
+        if (isBlocked(map, next, avoid)) {
+            moveRandom(hero, map, current, avoid);
         } else {
             hero.move(String.valueOf(dir));
         }
     }
 
-    private static boolean isBlocked(GameMap map, Node node) {
+    private static boolean isBlocked(GameMap map, Node node, List<Node> avoid) {
         List<Node> blocks = new ArrayList<>(map.getListIndestructibles());
         blocks.removeAll(map.getObstaclesByTag("CAN_GO_THROUGH"));
+        if (avoid != null) {
+            blocks.addAll(avoid);
+        }
         for (Node n : blocks) {
             if (n.x == node.x && n.y == node.y) return true;
         }
         return node.x < 0 || node.y < 0 || node.x >= map.getMapSize() || node.y >= map.getMapSize();
     }
 
-    private static void moveRandom(Hero hero, GameMap map, Node current) throws IOException {
+    private static void moveRandom(Hero hero, GameMap map, Node current, List<Node> avoid) throws IOException {
         String[] dirs = {"l", "r", "u", "d"};
         for (int i = 0; i < 4; i++) {
             String d = dirs[RANDOM.nextInt(dirs.length)];
@@ -177,7 +218,7 @@ public class StepHandler {
             if (d.equals("r")) next.x++;
             if (d.equals("u")) next.y--;
             if (d.equals("d")) next.y++;
-            if (!isBlocked(map, next)) {
+            if (!isBlocked(map, next, avoid)) {
                 hero.move(d);
                 return;
             }
