@@ -1,17 +1,22 @@
 import jsclub.codefest.sdk.Hero;
 
+// Map update listener located in the same package
+
+
+
 import java.io.IOException;
+
 
 public class Main2 {
     private static final String SERVER_URL = "https://cf25-server.jsclub.dev";
-    private static final String GAME_ID = "194755";
-    private static final String PLAYER_NAME = "Huyen";
-    private static final String SECRET_KEY = "sk-dkta4PFURHmV_RECouwuPA:w38nWATI0S0gtXWTi0ZvzlRsfg5ynYNQVfNiWnhK28dO2Dl3qgNVORAnZ_19B5RPpfIWUCn1xiIXczA8hNvvPA";
+    private static final String GAME_ID = "115005";
+    private static final String PLAYER_NAME = "Team8-Bot2";
+    private static final String SECRET_KEY = "sk-GdaqH5KQTMOJv3saId8OGQ:Tl-3murL582L5qOgCMqYu83NTXWKbzfHoMmzyUc0A7hMYh4ah3qs0ysgn_lz6tLT5QmvxPgxv0f52qTfB9IrDA";
+
 
     public static void main(String[] args) throws IOException {
         Hero hero = new Hero(GAME_ID, PLAYER_NAME, SECRET_KEY);
-        hero.setOnMapUpdate(new MapUpdateListener(hero));
+        hero.setOnMapUpdate(new MapUpdateListener2(hero));
         hero.start(SERVER_URL);
     }
 }
-

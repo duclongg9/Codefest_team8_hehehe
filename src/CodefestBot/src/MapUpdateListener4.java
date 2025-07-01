@@ -3,10 +3,10 @@ import jsclub.codefest.sdk.Hero;
 import jsclub.codefest.sdk.model.GameMap;
 import java.io.IOException;
 
-public class MapUpdateListener implements Emitter.Listener {
+public class MapUpdateListener4 implements Emitter.Listener {
     private final Hero hero;
 
-    public MapUpdateListener(Hero hero) {
+    public MapUpdateListener4(Hero hero) {
         this.hero = hero;
     }
 
@@ -16,7 +16,7 @@ public class MapUpdateListener implements Emitter.Listener {
         GameMap gameMap = hero.getGameMap();
         gameMap.updateOnUpdateMap(args[0]);
         try {
-            StepHandler_HunterTrapper.handleStep(gameMap, hero);
+            StepHandler_SmartAggressive.handleStep(gameMap, hero);
         } catch (IOException e) {
             e.printStackTrace();
         }
