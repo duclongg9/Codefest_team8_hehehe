@@ -7,6 +7,7 @@ import jsclub.codefest.sdk.model.equipments.HealingItem;
 import jsclub.codefest.sdk.model.weapon.Weapon;
 import jsclub.codefest.sdk.model.npcs.Enemy;
 import jsclub.codefest.sdk.model.obstacles.Obstacle;
+import jsclub.codefest.sdk.model.players.Player;
 import jsclub.codefest.sdk.model.ElementType;
 
 import java.io.IOException;
@@ -17,6 +18,7 @@ import java.util.Random;
 public class StepHandler {
     private static final Random RANDOM = new Random();
     private static final int ENEMY_AVOID_RADIUS = 1;
+    private static final int BIG_GUN_DAMAGE = 50;
 
     public static void handleStep(GameMap gameMap, Hero hero) throws IOException {
         if (gameMap == null || hero == null) return;
@@ -27,6 +29,7 @@ public class StepHandler {
         Node current = new Node(player.getX(), player.getY());
 //        List<Node> avoid = getRestrictedNodes(gameMap);
         Inventory inv = hero.getInventory();
+        boolean hasBigGun = inv.getGun() != null && inv.getGun().getDamage() >= BIG_GUN_DAMAGE;
         boolean avoidEnemies = inv.getGun() == null || player.getHealth() < 40;
         List<Node> avoid = getRestrictedNodes(gameMap, avoidEnemies);
 
@@ -35,20 +38,39 @@ public class StepHandler {
             if (nearestGun != null && moveToTarget(hero, gameMap, current, nearestGun, avoid)) {
                 return;
             }
-        }else {
-                Enemy shootable = getShootableEnemy(gameMap, current, inv.getGun().getRange());
-                if (shootable != null) {
-                    hero.shoot(getDirection(current, shootable));
-                    return;
-                }
+        } else {
+            Enemy shootable = getShootableEnemy(gameMap, current, inv.getGun().getRange());
+            if (shootable != null) {
+                hero.shoot(getDirection(current, shootable));
+                return;
+            }
 
-
-                Weapon betterGun = getBetterGun(gameMap.getAllGun(), inv.getGun(), current);
-            if (betterGun != null && moveToTarget(hero, gameMap, current, betterGun, avoid)) {
+            if (hasBigGun) {
+                Player shootablePlayer = getShootablePlayer(gameMap, current, inv.getGun().getRange());
+                if (shootablePlayer != null) {
+                    hero.shoot(getDirection(current, shootablePlayer));
                     return;
                 }
             }
 
+                Weapon betterGun = getBetterGun(gameMap.getAllGun(), inv.getGun(), current);
+            if (betterGun != null && moveToTarget(hero, gameMap, current, betterGun, avoid)) {
+                return;
+            }
+        }
+
+        if (hasBigGun) {
+            Player nearestPlayer = getNearestPlayer(gameMap.getOtherPlayerInfo(), current);
+            if (nearestPlayer != null) {
+                if (PathUtils.distance(current, nearestPlayer) == 1 && player.getHealth() > 50) {
+                    hero.attack(getDirection(current, nearestPlayer));
+                    return;
+                }
+                if (moveToTarget(hero, gameMap, current, nearestPlayer, avoid)) {
+                    return;
+                }
+            }
+        }
 
             Enemy nearestEnemy = getNearestEnemy(gameMap.getListEnemies(), current);
             if (nearestEnemy != null && PathUtils.distance(current, nearestEnemy) == 1 && player.getHealth() > 50) {
@@ -188,8 +210,37 @@ public class StepHandler {
             return target;
         }
 
+    private static Player getNearestPlayer (List < Player > players, Node current){
+        Player nearest = null;
+        double min = Double.MAX_VALUE;
+        for (Player p : players) {
+            double d = PathUtils.distance(current, p);
+            if (d < min) {
+                min = d;
+                nearest = p;
+            }
+        }
+        return nearest;
+    }
 
-        private static Obstacle getNearestChest (List < Obstacle > chests, Node current){
+    private static Player getShootablePlayer (GameMap map, Node current,int range){
+        Player target = null;
+        double min = Double.MAX_VALUE;
+        for (Player p : map.getOtherPlayerInfo()) {
+            if (p.getHealth() != null && p.getHealth() <= 0) continue;
+            double dist = PathUtils.distance(current, p);
+            if (dist > 0 && dist <= range && isAligned(current, p) && isClearPath(map, current, p)) {
+                if (dist < min) {
+                    min = dist;
+                    target = p;
+                }
+            }
+        }
+        return target;
+    }
+
+
+    private static Obstacle getNearestChest (List < Obstacle > chests, Node current){
             Obstacle nearest = null;
             double min = Double.MAX_VALUE;
             for (Obstacle c : chests) {
