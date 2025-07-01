@@ -72,9 +72,11 @@ public class StepHandler {
             }
 
             Obstacle chest = getNearestChest(gameMap.getListChests(), current);
-            if (chest != null && PathUtils.distance(current, chest) <= 1) {
-                if (PathUtils.distance(current, chest) == 0) {
-                    hero.attack("u");
+        if (chest != null) {
+            int chestDist = PathUtils.distance(current, chest);
+            if (chestDist == 1) {
+                hero.attack(getDirection(current, chest));
+            } else if (chestDist == 0) {
                     hero.pickupItem();
                 } else {
                     hero.move(getDirection(current, chest));
