@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class Main4 {
     private static final String SERVER_URL = "https://cf25-server.jsclub.dev";
-    private static final String GAME_ID = "159723";
+    private static final String GAME_ID = "113282";
     private static final String PLAYER_NAME = "Team8-Bot4";
     private static final String SECRET_KEY = "sk-CIWbSOsQSG2yaFmYIpJRTw:E4WFjJIV4drMuK_L3Dxm0B0pv9FYfY4LdTK9UwuV7bQeToK3TqLzyHaLl4QOeizl0lhO74GJ25tBVs2AMWiSRw";
 
