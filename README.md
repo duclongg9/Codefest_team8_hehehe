@@ -11,7 +11,7 @@ Phát triển bot thông minh để chiến thắng CODEFEST 2025 thông qua chi
 - `scripts/`: Tập hợp script để chạy thử, test nhanh bot, tiện debug.
 - `test/`: Nếu team muốn viết test case cho từng module bot (tuỳ năng lực team).
 - `assets/`: Hình ảnh, biểu đồ chiến thuật, flow game (nếu có).
-<bash>
+```bash
 Codefest_team8/
 ├── src/                    # Mã nguồn Java chính
 │   ├── bot/                # Logic điều khiển bot (chiến thuật, AI)
@@ -37,7 +37,7 @@ Codefest_team8/
 ├── README.md               # Hướng dẫn khởi động & quản lý dự án
 └── LICENSE                 # Thông tin bản quyền (nếu có)
 
-</bash>
+```
 ## ⚙️ Cách khởi động
 1. Mở bằng IntelliJ (JDK 20+).
 2. Import `CodeFestv2.5.jar` vào project.
