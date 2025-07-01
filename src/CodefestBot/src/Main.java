@@ -28,3 +28,4 @@ public class Main {
         hero.start(SERVER_URL);
     }
 }
+
