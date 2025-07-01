@@ -1,0 +1,70 @@
+📘 HƯỚNG DẪN CẤU TRÚC BOT THEO CHIẾN THUẬT + KỸ NĂNG DÙNG CHUNG
+
+---
+
+🎯 MỤC TIÊU:
+Thiết kế 1 đội bot mà mỗi con có chiến thuật khác nhau (Hunter, Stealth, Rogue, Zone,...)
+nhưng vẫn dùng chung kỹ năng cơ bản như:
+- Nhặt súng nếu chưa có
+- Né NPC (vòng đỏ)
+- Phá rương nếu gần
+- Bắn khi có địch trong tầm
+- Né khi bị đối thủ khóa mục tiêu
+
+---
+
+🧱 CẤU TRÚC FILE GỢI Ý:
+
+📁 src/
+    ├── BaseBotLogic.java         ← Chứa các kỹ năng cơ bản (xử lý độc lập)
+    ├── StepHandler_HunterTrapper.java
+    ├── StepHandler_RogueCollector.java
+    ├── StepHandler_ZoneDominator.java
+    ├── StepHandler_StealthOpportunist.java
+    └── Main1.java, Main2.java, ...
+
+---
+
+🔧 FILE: BaseBotLogic.java
+Chứa các static method:
+
+public static boolean pickupGunIfNeeded(Hero hero, GameMap map, Node current)
+public static boolean avoidEnemies(Hero hero, GameMap map, Node current)
+public static boolean shootNearby(Hero hero, GameMap map, Node current, Inventory inv)
+public static boolean breakChestIfNearby(Hero hero, GameMap map, Node current)
+public static boolean dodgeBulletIfTargeted(Hero hero, GameMap map, Node current)
+
+Mỗi method xử lý 1 tình huống đơn giản, trả về true nếu đã hành động (pickup, né, bắn, v.v.)
+
+---
+
+📄 Ví dụ trong StepHandler_XYZ.java:
+
+import static BaseBotLogic.*;
+
+public class StepHandler {
+    public static void handleStep(GameMap map, Hero hero) throws IOException {
+        Node me = new Node(...);
+        Inventory inv = hero.getInventory();
+
+        if (pickupGunIfNeeded(hero, map, me)) return;
+        if (avoidEnemies(hero, map, me)) return;
+        if (shootNearby(hero, map, me, inv)) return;
+        if (breakChestIfNearby(hero, map, me)) return;
+
+        // Các hành vi chiến thuật riêng: đi center, canh thính, đột kích, v.v.
+    }
+}
+
+---
+
+✅ ƯU ĐIỂM:
+- Viết kỹ năng 1 lần, dùng cho mọi chiến thuật.
+- Rất dễ test, nâng cấp và refactor.
+- Giữ được "phẩm chất cá nhân" cho mọi bot nhưng vẫn linh hoạt chiến lược.
+
+---
+
+💡 GỢI Ý:
+- Dùng cùng 1 MapUpdateListener cho nhiều Main nếu cần.
+- Chuyển các hằng số về 1 Constants.java nếu dùng nhiều nơi.
