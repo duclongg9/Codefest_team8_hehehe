@@ -19,6 +19,7 @@ public class StepHandler {
     private static final Random RANDOM = new Random();
     private static final int ENEMY_AVOID_RADIUS = 1;
     private static final int BIG_GUN_DAMAGE = 50;
+    private static final int SAFE_ZONE_BUFFER = 2;
 
     public static void handleStep(GameMap gameMap, Hero hero) throws IOException {
         if (gameMap == null || hero == null) return;
@@ -31,7 +32,8 @@ public class StepHandler {
         Inventory inv = hero.getInventory();
         boolean hasBigGun = inv.getGun() != null && inv.getGun().getDamage() >= BIG_GUN_DAMAGE;
         boolean avoidEnemies = inv.getGun() == null || player.getHealth() < 40;
-        List<Node> avoid = getRestrictedNodes(gameMap, avoidEnemies);
+        boolean avoidPlayers = inv.getGun() == null;
+        List<Node> avoid = getRestrictedNodes(gameMap, avoidEnemies, avoidPlayers);
 
         if (inv.getGun() == null) {
             Weapon nearestGun = getNearestWeapon(gameMap.getAllGun(), current);
@@ -45,12 +47,10 @@ public class StepHandler {
                 return;
             }
 
-            if (hasBigGun) {
-                Player shootablePlayer = getShootablePlayer(gameMap, current, inv.getGun().getRange());
-                if (shootablePlayer != null) {
-                    hero.shoot(getDirection(current, shootablePlayer));
-                    return;
-                }
+            Player shootablePlayer = getShootablePlayer(gameMap, current, inv.getGun().getRange());
+            if (shootablePlayer != null) {
+                hero.shoot(getDirection(current, shootablePlayer));
+                return;
             }
 
                 Weapon betterGun = getBetterGun(gameMap.getAllGun(), inv.getGun(), current);
@@ -59,16 +59,14 @@ public class StepHandler {
             }
         }
 
-        if (hasBigGun) {
-            Player nearestPlayer = getNearestPlayer(gameMap.getOtherPlayerInfo(), current);
-            if (nearestPlayer != null) {
-                if (PathUtils.distance(current, nearestPlayer) == 1 && player.getHealth() > 50) {
-                    hero.attack(getDirection(current, nearestPlayer));
-                    return;
-                }
-                if (moveToTarget(hero, gameMap, current, nearestPlayer, avoid)) {
-                    return;
-                }
+        Player nearestPlayer = getNearestPlayer(gameMap.getOtherPlayerInfo(), current);
+        if (nearestPlayer != null) {
+            if (PathUtils.distance(current, nearestPlayer) == 1 && player.getHealth() > 50) {
+                hero.attack(getDirection(current, nearestPlayer));
+                return;
+            }
+            if (moveToTarget(hero, gameMap, current, nearestPlayer, avoid)) {
+                return;
             }
         }
 
@@ -85,8 +83,20 @@ public class StepHandler {
                 }
             }
 
-            if (!PathUtils.checkInsideSafeArea(current, gameMap.getSafeZone(), gameMap.getMapSize())) {
-                Node center = new Node(gameMap.getMapSize() / 2, gameMap.getMapSize() / 2);
+        // Move early towards the center when staying too close to the safe zone border
+        Node center = new Node(gameMap.getMapSize() / 2, gameMap.getMapSize() / 2);
+        int distToCenter = PathUtils.distance(current, center);
+        if (distToCenter >= gameMap.getSafeZone() - SAFE_ZONE_BUFFER) {
+            String path = PathUtils.getShortestPath(gameMap, avoid, current, center, false);
+            if (path != null && !path.isEmpty() && moveOneStep(hero, gameMap, current, path.charAt(0), avoid)) {
+                return;
+            }
+        }
+
+
+
+        if (!PathUtils.checkInsideSafeArea(current, gameMap.getSafeZone(), gameMap.getMapSize())) {
+//                Node center = new Node(gameMap.getMapSize() / 2, gameMap.getMapSize() / 2);
                 String path = PathUtils.getShortestPath(gameMap, avoid, current, center, false);
                 if (path != null && !path.isEmpty() && moveOneStep(hero, gameMap, current, path.charAt(0), avoid)) {
                     return;
@@ -115,10 +125,12 @@ public class StepHandler {
             moveRandom(hero, gameMap, current, avoid);
         }
 
-        private static List<Node> getRestrictedNodes (GameMap gameMap,boolean avoidEnemies){
+    private static List<Node> getRestrictedNodes(GameMap gameMap, boolean avoidEnemies, boolean avoidPlayers) {
             List<Node> nodes = new ArrayList<>(gameMap.getListIndestructibles());
             nodes.removeAll(gameMap.getObstaclesByTag("CAN_GO_THROUGH"));
+        if (avoidPlayers) {
             nodes.addAll(gameMap.getOtherPlayerInfo());
+        }
             if (avoidEnemies) {
                 for (Enemy e : gameMap.getListEnemies()) {
                     for (int dx = -ENEMY_AVOID_RADIUS; dx <= ENEMY_AVOID_RADIUS; dx++) {
