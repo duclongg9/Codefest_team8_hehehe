@@ -10,11 +10,12 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../sdk/CodeFestv2.5.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../sdk/CodeFest.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="java" level="project" />
   </component>
 </module>
