@@ -1,5 +1,4 @@
-import io.socket.emitter.Emitter;
-import jsclub.codefest.sdk.model.GameMap;
+
 import jsclub.codefest.sdk.Hero;
 
 import java.io.IOException;
@@ -14,17 +13,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         Hero hero = new Hero(GAME_ID, PLAYER_NAME, SECRET_KEY);
 
-        Emitter.Listener onMapUpdate = new Emitter.Listener() {
-            @Override
-            public void call(Object... args) {
-
-                GameMap gameMap = hero.getGameMap();
-                gameMap.updateOnUpdateMap(args[0]);
-
-            }
-        };
-
-        hero.setOnMapUpdate(onMapUpdate);
+        hero.setOnMapUpdate(new MapUpdateListener(hero));
         hero.start(SERVER_URL);
     }
 }
