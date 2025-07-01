@@ -24,8 +24,10 @@ public class StepHandler {
         if (player == null || player.getHealth() == null || player.getHealth() <= 0) return;
 
         Node current = new Node(player.getX(), player.getY());
-        List<Node> avoid = getRestrictedNodes(gameMap);
+//        List<Node> avoid = getRestrictedNodes(gameMap);
         Inventory inv = hero.getInventory();
+        boolean avoidEnemies = inv.getGun() == null || player.getHealth() < 40;
+        List<Node> avoid = getRestrictedNodes(gameMap, avoidEnemies);
 
         if (inv.getGun() == null) {
             Weapon nearestGun = getNearestWeapon(gameMap.getAllGun(), current);
@@ -33,6 +35,12 @@ public class StepHandler {
                 moveToTarget(hero, gameMap, current, nearestGun, avoid);
                 return;
             }
+            Enemy shootable = getShootableEnemy(gameMap, current, inv.getGun().getRange());
+            if (shootable != null) {
+                hero.shoot(getDirection(current, shootable));
+                return;
+            }
+
         } else {
             Weapon betterGun = getBetterGun(gameMap.getAllGun(), inv.getGun(), current);
             if (betterGun != null) {
@@ -76,21 +84,29 @@ public class StepHandler {
             }
             return;
         }
+        if (nearestEnemy != null && inv.getGun() != null && player.getHealth() > 50) {
+            moveToTarget(hero, gameMap, current, nearestEnemy, avoid);
+            return;
+        }
+
+
 
         moveRandom(hero, gameMap, current, avoid);
     }
 
-    private static List<Node> getRestrictedNodes(GameMap gameMap) {
+    private static List<Node> getRestrictedNodes(GameMap gameMap, boolean avoidEnemies) {
         List<Node> nodes = new ArrayList<>(gameMap.getListIndestructibles());
         nodes.removeAll(gameMap.getObstaclesByTag("CAN_GO_THROUGH"));
         nodes.addAll(gameMap.getOtherPlayerInfo());
-        for (Enemy e : gameMap.getListEnemies()) {
-            for (int dx = -ENEMY_AVOID_RADIUS; dx <= ENEMY_AVOID_RADIUS; dx++) {
-                for (int dy = -ENEMY_AVOID_RADIUS; dy <= ENEMY_AVOID_RADIUS; dy++) {
-                    int nx = e.getX() + dx;
-                    int ny = e.getY() + dy;
-                    if (nx >= 0 && ny >= 0 && nx < gameMap.getMapSize() && ny < gameMap.getMapSize()) {
-                        nodes.add(new Node(nx, ny));
+        if (avoidEnemies) {
+            for (Enemy e : gameMap.getListEnemies()) {
+                for (int dx = -ENEMY_AVOID_RADIUS; dx <= ENEMY_AVOID_RADIUS; dx++) {
+                    for (int dy = -ENEMY_AVOID_RADIUS; dy <= ENEMY_AVOID_RADIUS; dy++) {
+                        int nx = e.getX() + dx;
+                        int ny = e.getY() + dy;
+                        if (nx >= 0 && ny >= 0 && nx < gameMap.getMapSize() && ny < gameMap.getMapSize()) {
+                            nodes.add(new Node(nx, ny));
+                        }
                     }
                 }
             }
@@ -155,6 +171,23 @@ public class StepHandler {
         }
         return nearest;
     }
+
+    private static Enemy getShootableEnemy(GameMap map, Node current, int range) {
+        Enemy target = null;
+        double min = Double.MAX_VALUE;
+        for (Enemy e : map.getListEnemies()) {
+            double dist = PathUtils.distance(current, e);
+            if (dist > 0 && dist <= range && isAligned(current, e) && isClearPath(map, current, e)) {
+                if (dist < min) {
+                    min = dist;
+                    target = e;
+                }
+            }
+        }
+        return target;
+    }
+
+
 
     private static Obstacle getNearestChest(List<Obstacle> chests, Node current) {
         Obstacle nearest = null;
@@ -224,6 +257,24 @@ public class StepHandler {
             }
         }
     }
+
+    private static boolean isAligned(Node a, Node b) {
+        return a.x == b.x || a.y == b.y;
+    }
+
+    private static boolean isClearPath(GameMap map, Node from, Node to) {
+        if (!isAligned(from, to)) return false;
+        int dx = Integer.compare(to.x, from.x);
+        int dy = Integer.compare(to.y, from.y);
+        Node check = new Node(from.x + dx, from.y + dy);
+        while (check.x != to.x || check.y != to.y) {
+            if (isBlocked(map, check, null)) return false;
+            check.x += dx;
+            check.y += dy;
+        }
+        return true;
+    }
+
 
     private static String getDirection(Node from, Node to) {
         if (to.x < from.x) return "l";
