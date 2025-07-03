@@ -55,6 +55,8 @@ public class StepHandler_SmartAggressive {
             }
         }
 
+        if (hasGun && BaseBotLogic.shootNearby(hero, gameMap, me, inv)) return;
+
         // --- TRÁNH VÙNG TỐI ---
         if (!PathUtils.checkInsideSafeArea(me, gameMap.getSafeZone(), gameMap.getMapSize())) {
             Node center = new Node(gameMap.getMapSize()/2, gameMap.getMapSize()/2);

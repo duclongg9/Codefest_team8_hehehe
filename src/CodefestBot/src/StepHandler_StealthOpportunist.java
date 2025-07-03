@@ -48,6 +48,7 @@ public class StepHandler_StealthOpportunist {
                 return;
             }
         }
+        if (inv.getGun() != null && BaseBotLogic.shootNearby(hero, gameMap, me, inv)) return;
 
         // 4. Luôn đảm bảo ở trong bo
         if (!PathUtils.checkInsideSafeArea(me, gameMap.getSafeZone(), gameMap.getMapSize())) {

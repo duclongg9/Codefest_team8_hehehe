@@ -57,6 +57,7 @@ public class StepHandler_ZoneDominator {
                 hero.shoot(BaseBotLogic.getDirection(me, intruder));
                 return;
             }
+            if (BaseBotLogic.shootNearby(hero, gameMap, me, inv)) return;
         }
 
         // 5. Luôn trong bo

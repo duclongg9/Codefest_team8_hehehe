@@ -48,6 +48,7 @@ public class StepHandler_RogueCollector {
                 hero.shoot(BaseBotLogic.getDirection(me, block));
                 return;
             }
+            if (BaseBotLogic.shootNearby(hero, gameMap, me, inv)) return;
         }
 
         // 5. Luôn đảm bảo trong bo

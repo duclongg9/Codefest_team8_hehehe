@@ -57,8 +57,8 @@ public class StepHandler_HunterTrapper {
             }
         }
 
-        if (BaseBotLogic.avoidEnemies(hero, gameMap, me)) return;
         if (BaseBotLogic.shootNearby(hero, gameMap, me, inv)) return;
+        if (BaseBotLogic.avoidEnemies(hero, gameMap, me)) return;
         if (BaseBotLogic.breakChestIfNearby(hero, gameMap, me)) return;
         BaseBotLogic.dodgeBulletIfTargeted(hero, gameMap, me);
 
