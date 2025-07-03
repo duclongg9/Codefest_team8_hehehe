@@ -4,7 +4,7 @@ import jsclub.codefest.sdk.base.Node;
 import jsclub.codefest.sdk.algorithm.PathUtils;
 import jsclub.codefest.sdk.model.GameMap;
 import jsclub.codefest.sdk.model.Inventory;
-import jsclub.codefest.sdk.model.healing_items.HealingItem;
+import jsclub.codefest.sdk.model.support_items.SupportItem;
 import jsclub.codefest.sdk.model.weapon.Weapon;
 import jsclub.codefest.sdk.model.players.Player;
 
@@ -35,7 +35,7 @@ public class StepHandler_ZoneDominator {
 
         // 2. Nếu máu thấp → tìm hồi máu
         if (player.getHealth() < SAFE_HP) {
-            HealingItem heal = BaseBotLogic.getClosest(gameMap.getListHealingItems(), me);
+            SupportItem heal = BaseBotLogic.getClosest(gameMap.getListSupportItems(), me);
             if (heal != null && BaseBotLogic.goTo(hero, gameMap, me, heal, avoid)) return;
         }
 
@@ -51,14 +51,14 @@ public class StepHandler_ZoneDominator {
         }
 
         // 4. Nếu có player lảng vảng khu trung tâm → bắn
-        if (inv.getGun() != null) {
-            Player intruder = getTargetInCenter(gameMap.getOtherPlayerInfo(), center, inv.getGun().getRange());
-            if (intruder != null) {
-                hero.shoot(BaseBotLogic.getDirection(me, intruder));
-                return;
-            }
-            if (BaseBotLogic.shootNearby(hero, gameMap, me, inv)) return;
-        }
+//        if (inv.getGun() != null) {
+//            Player intruder = getTargetInCenter(gameMap.getOtherPlayerInfo(), center, inv.getGun().getRange());
+//            if (intruder != null) {
+//                hero.shoot(BaseBotLogic.getDirection(me, intruder));
+//                return;
+//            }
+//            if (BaseBotLogic.shootNearby(hero, gameMap, me, inv)) return;
+//        }
 
         // 5. Luôn trong bo
         if (!PathUtils.checkInsideSafeArea(me, gameMap.getSafeZone(), gameMap.getMapSize())) {

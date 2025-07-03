@@ -4,7 +4,7 @@ import jsclub.codefest.sdk.base.Node;
 import jsclub.codefest.sdk.algorithm.PathUtils;
 import jsclub.codefest.sdk.model.GameMap;
 import jsclub.codefest.sdk.model.Inventory;
-import jsclub.codefest.sdk.model.healing_items.HealingItem;
+import jsclub.codefest.sdk.model.support_items.SupportItem;
 import jsclub.codefest.sdk.model.weapon.Weapon;
 import jsclub.codefest.sdk.model.obstacles.Obstacle;
 import jsclub.codefest.sdk.model.players.Player;
@@ -32,24 +32,24 @@ public class StepHandler_RogueCollector {
         }
 
         // 2. Ưu tiên rương nếu có thể (collector mode)
-        Obstacle chest = BaseBotLogic.getClosest(gameMap.getListChests(), me);
+        Obstacle chest = BaseBotLogic.getClosest(gameMap.getListObstacles(), me);
         if (chest != null && BaseBotLogic.goTo(hero, gameMap, me, chest, avoid)) return;
 
         // 3. Nhặt healing nếu máu < 60
         if (player.getHealth() < 60) {
-            HealingItem heal = BaseBotLogic.getClosest(gameMap.getListHealingItems(), me);
+            SupportItem heal = BaseBotLogic.getClosest(gameMap.getListSupportItems(), me);
             if (heal != null && BaseBotLogic.goTo(hero, gameMap, me, heal, avoid)) return;
         }
 
         // 4. Bắn chỉ khi bị chắn đường hoặc địch yếu
-        if (inv.getGun() != null) {
-            Player block = getWeakPlayerNearby(gameMap.getOtherPlayerInfo(), me, inv.getGun().getRange());
-            if (block != null) {
-                hero.shoot(BaseBotLogic.getDirection(me, block));
-                return;
-            }
-            if (BaseBotLogic.shootNearby(hero, gameMap, me, inv)) return;
-        }
+//        if (inv.getGun() != null) {
+//            Player block = getWeakPlayerNearby(gameMap.getOtherPlayerInfo(), me, inv.getGun().getRange());
+//            if (block != null) {
+//                hero.shoot(BaseBotLogic.getDirection(me, block));
+//                return;
+//            }
+//            if (BaseBotLogic.shootNearby(hero, gameMap, me, inv)) return;
+//        }
 
         // 5. Luôn đảm bảo trong bo
         if (!PathUtils.checkInsideSafeArea(me, gameMap.getSafeZone(), gameMap.getMapSize())) {
