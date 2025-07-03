@@ -232,7 +232,7 @@ public class Hero {
      * @param direction the direction in which to throw the object
      * @throws IOException if an I/O error occurs
      */
-    public void throwItem(String direction, int distance) throws IOException {
+    public void throwItem(String direction) throws IOException {
         Socket socket = socketClient.getSocket();
 
         if (direction.isEmpty() || direction == null) {
@@ -253,7 +253,7 @@ public class Hero {
             return;
         }
 
-        PlayerThrowItemAction botThrow = new PlayerThrowItemAction(direction,distance);
+        PlayerThrowItemAction botThrow = new PlayerThrowItemAction(direction);
         byte[] bytes = MsgPackUtil.encodeFromObject(botThrow);
         socket.emit(EventName.EMIT_THROW, (Object) bytes);
     }
@@ -270,7 +270,7 @@ public class Hero {
         Node currentPos = new Node(getGameMap().getCurrentPlayer().x, getGameMap().getCurrentPlayer().y);
         boolean hasItem = hasItem(currentPos.x, currentPos.y);
 
-        System.out.println("hasItem:"+hasItem);
+        //System.out.println("hasItem:"+hasItem);
 
         if (socket == null || !hasItem) {
             System.out.println("DEBUG FROM SDK pickupItem ERROR : Socket is null or current position does not have item");
