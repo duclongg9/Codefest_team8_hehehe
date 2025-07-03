@@ -4,27 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4f7224f-4202-45c7-bf1f-1c0509d2d0de" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CodefestBot.iml" beforeDir="false" afterPath="$PROJECT_DIR$/CodefestBot.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodefestBot/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodefestBot/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodefestBot/Main2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodefestBot/Main2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodefestBot/Main3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodefestBot/Main3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodefestBot/Main4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodefestBot/Main4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodefestBot/Main5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodefestBot/Main5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodefestBot/StepHandler_HunterTrapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodefestBot/StepHandler_HunterTrapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodefestBot/StepHandler_RogueCollector.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodefestBot/StepHandler_RogueCollector.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodefestBot/StepHandler_SmartAggressive.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodefestBot/StepHandler_SmartAggressive.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodefestBot/StepHandler_StealthOpportunist.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodefestBot/StepHandler_StealthOpportunist.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodefestBot/StepHandler_ZoneDominator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodefestBot/StepHandler_ZoneDominator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main4.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main5.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main5.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/StepHandler_HunterTrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StepHandler_HunterTrapper.java" afterDir="false" />
-    </list>
+    <list default="true" id="b4f7224f-4202-45c7-bf1f-1c0509d2d0de" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -136,7 +116,7 @@
       <updated>1751355179367</updated>
       <workItem from="1751355180464" duration="8040000" />
       <workItem from="1751371346855" duration="11561000" />
-      <workItem from="1751556655573" duration="270000" />
+      <workItem from="1751556655573" duration="595000" />
     </task>
     <servers />
   </component>
