@@ -2,9 +2,11 @@ import jsclub.codefest.sdk.Hero;
 import jsclub.codefest.sdk.base.Node;
 import jsclub.codefest.sdk.algorithm.PathUtils;
 import jsclub.codefest.sdk.model.GameMap;
+import jsclub.codefest.sdk.model.ElementType;
 import jsclub.codefest.sdk.model.players.Player;
 import jsclub.codefest.sdk.model.weapon.Weapon;
 import jsclub.codefest.sdk.model.support_items.SupportItem;
+import jsclub.codefest.sdk.model.obstacles.Obstacle;
 
 import java.io.IOException;
 import java.util.*;
@@ -39,7 +41,7 @@ public class StepHandler_Superman {
             return;
         }
 
-        if (BaseBotLogic.breakChestIfNearby(hero, gameMap, me)) return;
+        if (openChestIfNearby(gameMap, hero, me, avoid)) return;
 
         if (!PathUtils.checkInsideSafeArea(me, gameMap.getSafeZone(), gameMap.getMapSize())) {
             moveToSafeZone(gameMap, hero, me, avoid);
@@ -142,6 +144,15 @@ public class StepHandler_Superman {
         avoid.removeAll(map.getObstaclesByTag("CAN_GO_THROUGH"));
         avoid.addAll(map.getOtherPlayerInfo());
         return avoid;
+    }
+
+    private static boolean openChestIfNearby(GameMap map, Hero hero, Node me, List<Node> avoid) throws IOException {
+        for (Obstacle o : map.getListObstacles()) {
+            if (o.getType() == ElementType.CHEST && PathUtils.distance(me, o) <= 1) {
+                return BaseBotLogic.goTo(hero, map, me, o, avoid);
+            }
+        }
+        return false;
     }
 
     private static boolean shouldMoveToAirDrop(GameMap map) {
