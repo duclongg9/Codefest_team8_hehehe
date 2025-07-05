@@ -9,9 +9,10 @@ import java.io.IOException;
 
 public class Main {
     private static final String SERVER_URL = "https://cf25-server.jsclub.dev";
-    private static final String GAME_ID = "125608";
+    private static final String GAME_ID = "199389";
     private static final String PLAYER_NAME = "Team8-Bot1";
-    private static final String SECRET_KEY = "sk-dkta4PFURHmV_RECouwuPA:w38nWATI0S0gtXWTi0ZvzlRsfg5ynYNQVfNiWnhK28dO2Dl3qgNVORAnZ_19B5RPpfIWUCn1xiIXczA8hNvvPA";
+    private static final String SECRET_KEY = "sk-dkta4PFURHmV_RECouwuPA:w38nWATI0S0gtXWTi0ZvzlRsfg5ynYNQVfNiWnhK28dO2Dl3qgNVORAnZ_19B5RPpfIWUCn1xiIXczA8hNvvPA\n" +
+            "\n";
 
 
     public static void main(String[] args) throws IOException {

@@ -8,6 +8,7 @@ import jsclub.codefest.sdk.model.obstacles.Obstacle;
 import jsclub.codefest.sdk.model.npcs.Enemy;
 import jsclub.codefest.sdk.model.players.Player;
 import jsclub.codefest.sdk.model.weapon.Bullet;
+import jsclub.codefest.sdk.model.support_items.SupportItem;
 
 import java.io.IOException;
 import java.util.*;
@@ -111,12 +112,18 @@ public class BaseBotLogic {
     }
 
     public static boolean shootNearby(Hero hero, GameMap map, Node current, Inventory inv) throws IOException {
-        if (inv.getGun() == null) return false;
+        Weapon gun = inv.getGun();
+        if (gun == null) return false;
+
+        int[] range = gun.getRange();
+        int maxRange = (range != null && range.length >= 1) ? range[0] : 3;
+
         Player target = map.getOtherPlayerInfo().stream()
                 .filter(p -> p.getHealth() != null)
-                .filter(p -> PathUtils.distance(current, p) <= inv.getGun().getRange())
+                .filter(p -> PathUtils.distance(current, p) <= maxRange)
                 .min(Comparator.comparingDouble(p -> PathUtils.distance(current, p)))
                 .orElse(null);
+
         if (target != null) {
             hero.shoot(getDirection(current, target));
             return true;
@@ -125,7 +132,8 @@ public class BaseBotLogic {
     }
 
     public static boolean breakChestIfNearby(Hero hero, GameMap map, Node current) throws IOException {
-        Obstacle chest = getClosest(map.getListChests(), current);
+        List<Obstacle> chests = map.getObstaclesByTag("DESTRUCTIBLE");
+        Obstacle chest = getClosest(chests, current);
         if (chest != null && PathUtils.distance(current, chest) <= 1) {
             return goTo(hero, map, current, chest, buildAvoidList(map, true));
         }

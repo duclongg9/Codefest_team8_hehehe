@@ -16,7 +16,7 @@ public class MapUpdateListener3 implements Emitter.Listener {
         GameMap gameMap = hero.getGameMap();
         gameMap.updateOnUpdateMap(args[0]);
         try {
-            StepHandler_StealthOpportunist.handleStep(gameMap, hero);
+            StepHandler_SmartAggressive.handleStep(gameMap, hero);
         } catch (IOException e) {
             e.printStackTrace();
         }
