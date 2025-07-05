@@ -5,34 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b4f7224f-4202-45c7-bf1f-1c0509d2d0de" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/StepHandler_A.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/StepHandler_B.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodefestBot/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodefestBot/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodefestBot/Main2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodefestBot/Main2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodefestBot/Main3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodefestBot/Main4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodefestBot/Main5.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodefestBot/MapUpdateListener2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodefestBot/MapUpdateListener2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodefestBot/MapUpdateListener3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodefestBot/MapUpdateListener4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodefestBot/StepHandler_HunterTrapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodefestBot/StepHandler_RogueCollector.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodefestBot/StepHandler_RogueCollector.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodefestBot/StepHandler_SmartAggressive.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodefestBot/StepHandler_StealthOpportunist.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodefestBot/StepHandler_ZoneDominator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BaseBotLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BaseBotLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MapUpdateListener2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MapUpdateListener2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/StepHandler_HunterTrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StepHandler_HunterTrapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/StepHandler_RogueCollector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StepHandler_RogueCollector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/StepHandler_SmartAggressive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StepHandler_SmartAggressive.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/StepHandler_StealthOpportunist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StepHandler_StealthOpportunist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/StepHandler_Superman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StepHandler_Superman.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/StepHandler_Template.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StepHandler_Template.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/StepHandler_ZoneDominator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StepHandler_ZoneDominator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StepHandler_A.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StepHandler_A.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StepHandler_B.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StepHandler_B.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
