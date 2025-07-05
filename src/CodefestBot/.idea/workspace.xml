@@ -5,12 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b4f7224f-4202-45c7-bf1f-1c0509d2d0de" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/StepHandler_Champion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/MapInfoDump.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodefestBot/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodefestBot/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodefestBot/Main2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodefestBot/MapUpdateListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodefestBot/MapUpdateListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodefestBot/MapUpdateListener2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodefestBot/StepHandler_RogueCollector.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BaseBotLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BaseBotLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main3.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main4.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main5.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main5.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MapUpdateListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MapUpdateListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MapUpdateListener2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MapUpdateListener2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MapUpdateListener3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MapUpdateListener3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MapUpdateListener4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MapUpdateListener4.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MapUpdateListener5.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MapUpdateListener5.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StepHandler_A.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StepHandler_A.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StepHandler_B.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StepHandler_B.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StepHandler_Champion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StepHandler_Champion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StepHandler_HunterTrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StepHandler_HunterTrapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StepHandler_Joker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StepHandler_Joker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StepHandler_RogueCollector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StepHandler_RogueCollector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StepHandler_SmartAggressive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StepHandler_SmartAggressive.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StepHandler_StealthOpportunist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StepHandler_StealthOpportunist.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StepHandler_Superman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StepHandler_Superman.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StepHandler_Template.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StepHandler_Template.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StepHandler_ZoneDominator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StepHandler_ZoneDominator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,41 +59,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main2.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main3.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main4.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main5.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;codex/Long2&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/DH_FPT/Ky_7/Codefest_game/Codefest_team8_hehehe/sdk/CodeFest.jar&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.Main.executor": "Run",
+    "Application.Main2.executor": "Run",
+    "Application.Main3.executor": "Run",
+    "Application.Main4.executor": "Run",
+    "Application.Main5.executor": "Run",
+    "Application.MapInfoDump.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "codex/Long2",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/DH_FPT/Ky_7/Codefest_game/Codefest_team8_hehehe/sdk/CodeFest.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected="Application.Main5">
+}]]></component>
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="CodefestBot" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main2" />
       <module name="CodefestBot" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -96,13 +114,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MapInfoDump" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MapInfoDump" />
+      <module name="CodefestBot" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.MapInfoDump" />
         <item itemvalue="Application.Main5" />
         <item itemvalue="Application.Main4" />
         <item itemvalue="Application.Main3" />
-        <item itemvalue="Application.Main2" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
