@@ -16,7 +16,7 @@ public class MapUpdateListener2 implements Emitter.Listener {
         GameMap gameMap = hero.getGameMap();
         gameMap.updateOnUpdateMap(args[0]);
         try {
-            StepHandler_RogueCollector.handleStep(gameMap, hero);
+            StepHandler_B.handleStep(gameMap, hero);
         } catch (IOException e) {
             e.printStackTrace();
         }

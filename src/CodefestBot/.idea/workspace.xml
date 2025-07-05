@@ -5,12 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b4f7224f-4202-45c7-bf1f-1c0509d2d0de" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/StepHandler_Joker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodefestBot/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodefestBot/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodefestBot/Main2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodefestBot/Main2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodefestBot/MapUpdateListener2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodefestBot/MapUpdateListener2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodefestBot/StepHandler_RogueCollector.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodefestBot/StepHandler_RogueCollector.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BaseBotLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BaseBotLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main4.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MapUpdateListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MapUpdateListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MapUpdateListener2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MapUpdateListener2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MapUpdateListener3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MapUpdateListener3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MapUpdateListener4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MapUpdateListener4.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/StepHandler_A.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StepHandler_A.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/StepHandler_B.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StepHandler_B.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StepHandler_HunterTrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StepHandler_HunterTrapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StepHandler_Joker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StepHandler_Joker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StepHandler_Superman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StepHandler_Superman.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +73,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.Main2">
+  <component name="RunManager" selected="Application.Main4">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="CodefestBot" />
@@ -98,11 +111,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main4" />
+        <item itemvalue="Application.Main3" />
         <item itemvalue="Application.Main2" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main5" />
-        <item itemvalue="Application.Main4" />
-        <item itemvalue="Application.Main3" />
       </list>
     </recent_temporary>
   </component>
