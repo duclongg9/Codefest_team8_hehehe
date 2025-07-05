@@ -1,6 +1,6 @@
 
 
-import BaseBotLogic;
+
 import jsclub.codefest.sdk.Hero;
 import jsclub.codefest.sdk.algorithm.PathUtils;
 import jsclub.codefest.sdk.base.Node;
