@@ -94,6 +94,22 @@ public class BaseBotLogic {
         }
     }
 
+    /**
+     * Sử dụng Support Item ngay khi lượng máu xuống thấp.
+     * Thao tác này giúp bot sống sót lâu hơn và không bị mất điểm đáng tiếc.
+     *
+     * @param hero  đối tượng hero để ra lệnh sử dụng item
+     * @param inv   hành trang hiện tại của hero
+     * @param hp    lượng máu hiện tại của hero
+     */
+    public static void useSupportIfLowHP(Hero hero, Inventory inv, Float hp) throws IOException {
+        if (hp != null && hp < 100 && inv.getListSupportItem() != null && !inv.getListSupportItem().isEmpty()) {
+            hero.useItem(inv.getListSupportItem().get(0).getId());
+        }
+    }
+
+
+
     // --- Basic behaviours ---
     public static boolean pickupGunIfNeeded(Hero hero, GameMap map, Node current) throws IOException {
         Inventory inv = hero.getInventory();

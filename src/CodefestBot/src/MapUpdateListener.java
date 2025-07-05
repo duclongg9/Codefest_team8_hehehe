@@ -16,7 +16,7 @@ public class MapUpdateListener implements Emitter.Listener {
         GameMap gameMap = hero.getGameMap();
         gameMap.updateOnUpdateMap(args[0]);
         try {
-            StepHandler_Superman.handleStep(gameMap, hero);
+            StepHandler_Joker.handleStep(gameMap, hero);
         } catch (IOException e) {
             e.printStackTrace();
         }

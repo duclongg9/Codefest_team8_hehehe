@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b4f7224f-4202-45c7-bf1f-1c0509d2d0de" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/StepHandler_Joker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BaseBotLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BaseBotLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MapUpdateListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MapUpdateListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/StepHandler_A.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StepHandler_A.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/StepHandler_B.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StepHandler_B.java" afterDir="false" />
     </list>
