@@ -30,6 +30,9 @@ public class StepHandler_RogueCollector {
             if (gun != null && BaseBotLogic.goTo(hero, gameMap, me, gun, avoid)) return;
         }
 
+        // 1b. Nhặt vật phẩm giá trị cao
+        if (BaseBotLogic.pickupValuableItem(hero, gameMap, me)) return;
+
         // 2. Tìm rương gần nhất (rương = obstacle có tag "DESTRUCTIBLE")
         List<Obstacle> chests = gameMap.getObstaclesByTag("DESTRUCTIBLE");
         Obstacle chest = BaseBotLogic.getClosest(chests, me);

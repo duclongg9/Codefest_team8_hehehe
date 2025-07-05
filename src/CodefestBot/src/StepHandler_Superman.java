@@ -30,6 +30,9 @@ public class StepHandler_Superman {
             return;
         }
 
+        // 2b. Nhặt vật phẩm giá trị cao nếu tiện
+        if (BaseBotLogic.pickupValuableItem(hero, gameMap, me)) return;
+
         // 2. Nhặt súng nếu chưa có
         if (hero.getInventory().getGun() == null) {
             moveToNearestGun(gameMap, hero, me, avoid);

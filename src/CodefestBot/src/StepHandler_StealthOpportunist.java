@@ -33,6 +33,9 @@ public class StepHandler_StealthOpportunist {
             if (gun != null && BaseBotLogic.goTo(hero, gameMap, me, gun, avoid)) return;
         }
 
+        // 1b. Nhặt vật phẩm giá trị cao nếu tiện
+        if (BaseBotLogic.pickupValuableItem(hero, gameMap, me)) return;
+
         // 2. Nếu máu < 50 → ưu tiên SupportItem
         if (player.getHealth() < 50) {
             SupportItem heal = BaseBotLogic.getClosest(gameMap.getListSupportItems(), me);
