@@ -1,6 +1,6 @@
 **NPCs**
 
-
+```bash
 
 STT | Name                     | ID        | Type       | Size (cell) | Speed (cell/s) | Attack Range (cell) | Damage | HP hồi | Tác động đến Hero               | Cooldown (s) | Tối thiểu / Tối đa | Mô tả
 
