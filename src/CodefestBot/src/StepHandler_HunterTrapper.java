@@ -27,10 +27,10 @@ public class StepHandler_HunterTrapper {
         List<Node> avoid = BaseBotLogic.buildAvoidList(gameMap, player.getHealth() < AGGRESSIVE_HP);
 
         // 1. Nếu máu yếu, ưu tiên hồi máu
-//        if (player.getHealth() < RETREAT_HP) {
-//            HealingItem heal = BaseBotLogic.getClosest(gameMap.getListHealingItems(), me);
-//            if (heal != null && BaseBotLogic.goTo(hero, gameMap, me, heal, avoid)) return;
-//        }
+        if (player.getHealth() < RETREAT_HP) {
+            HealingItem heal = BaseBotLogic.getClosest(gameMap.getListHealingItems(), me);
+            if (heal != null && BaseBotLogic.goTo(hero, gameMap, me, heal, avoid)) return;
+        }
 
         // 2. Nếu chưa có súng → loot gấp
         if (BaseBotLogic.pickupGunIfNeeded(hero, gameMap, me))
@@ -38,8 +38,8 @@ public class StepHandler_HunterTrapper {
 
 
 //        // 3. Giữ khu vực trung tâm loot (rương/súng)
-//        Weapon nearbyGun = BaseBotLogic.getClosest(gameMap.getAllGun(), me);
-//        if (nearbyGun != null && PathUtils.distance(me, nearbyGun) < 4 && BaseBotLogic.goTo(hero, gameMap, me, nearbyGun, avoid)) return;
+        Weapon nearbyGun = BaseBotLogic.getClosest(gameMap.getAllGun(), me);
+        if (nearbyGun != null && PathUtils.distance(me, nearbyGun) < 4 && BaseBotLogic.goTo(hero, gameMap, me, nearbyGun, avoid)) return;
 
         // 4. Nếu có player đến gần và yếu → tấn công
 //        Player prey = getWeakApproachingPlayer(gameMap.getOtherPlayerInfo(), me, inv.getGun() != null ? inv.getGun().getRange() : 3);
