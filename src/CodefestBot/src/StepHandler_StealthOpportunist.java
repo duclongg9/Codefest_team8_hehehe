@@ -4,7 +4,7 @@ import jsclub.codefest.sdk.base.Node;
 import jsclub.codefest.sdk.algorithm.PathUtils;
 import jsclub.codefest.sdk.model.GameMap;
 import jsclub.codefest.sdk.model.Inventory;
-import jsclub.codefest.sdk.model.healing_items.HealingItem;
+import jsclub.codefest.sdk.model.support_items.SupportItem;
 import jsclub.codefest.sdk.model.weapon.Weapon;
 import jsclub.codefest.sdk.model.players.Player;
 
@@ -35,20 +35,20 @@ public class StepHandler_StealthOpportunist {
 
         // 2. Nếu máu yếu < 50, tìm hồi máu
         if (player.getHealth() < 50) {
-            HealingItem heal = BaseBotLogic.getClosest(gameMap.getListHealingItems(), me);
+            SupportItem heal = BaseBotLogic.getClosest(gameMap.getListSupportItems(), me);
             if (heal != null && BaseBotLogic.goTo(hero, gameMap, me, heal, avoid)) return;
         }
 
         // 3. Late game (game > 7 phút), chủ động săn player yếu
-        int mapTime = gameMap.getMapSize();
-        if (mapTime >= LATE_GAME_TIME && inv.getGun() != null && player.getHealth() >= MIN_ATTACK_HP) {
-            Player target = getWeakPlayer(gameMap.getOtherPlayerInfo(), me, inv.getGun().getRange());
-            if (target != null) {
-                hero.shoot(BaseBotLogic.getDirection(me, target));
-                return;
-            }
-        }
-        if (inv.getGun() != null && BaseBotLogic.shootNearby(hero, gameMap, me, inv)) return;
+//        int mapTime = gameMap.getMapSize();
+//        if (mapTime >= LATE_GAME_TIME && inv.getGun() != null && player.getHealth() >= MIN_ATTACK_HP) {
+//            Player target = getWeakPlayer(gameMap.getOtherPlayerInfo(), me, inv.getGun().getRange());
+//            if (target != null) {
+//                hero.shoot(BaseBotLogic.getDirection(me, target));
+//                return;
+//            }
+//        }
+//        if (inv.getGun() != null && BaseBotLogic.shootNearby(hero, gameMap, me, inv)) return;
 
         // 4. Luôn đảm bảo ở trong bo
         if (!PathUtils.checkInsideSafeArea(me, gameMap.getSafeZone(), gameMap.getMapSize())) {

@@ -4,7 +4,7 @@ import jsclub.codefest.sdk.base.Node;
 import jsclub.codefest.sdk.algorithm.PathUtils;
 import jsclub.codefest.sdk.model.GameMap;
 import jsclub.codefest.sdk.model.Inventory;
-import jsclub.codefest.sdk.model.healing_items.HealingItem;
+import jsclub.codefest.sdk.model.support_items.SupportItem;
 import jsclub.codefest.sdk.model.weapon.Weapon;
 import jsclub.codefest.sdk.model.players.Player;
 
@@ -43,17 +43,17 @@ public class StepHandler_SmartAggressive {
             if (gun != null && BaseBotLogic.goTo(hero, gameMap, me, gun, avoid)) return;
         }
 
-        HealingItem heal = BaseBotLogic.getClosest(gameMap.getListHealingItems(), me);
+        SupportItem heal = BaseBotLogic.getClosest(gameMap.getListSupportItems(), me);
         if (player.getHealth() < 50 && heal != null && BaseBotLogic.goTo(hero, gameMap, me, heal, avoid)) return;
 
         // --- ENGAGE KHI CÓ LỢI ---
-        if (hasGun && isHealthy) {
-            Player target = getWeakPlayer(gameMap.getOtherPlayerInfo(), me, inv.getGun().getRange());
-            if (target != null) {
-                hero.shoot(BaseBotLogic.getDirection(me, target));
-                return;
-            }
-        }
+//        if (hasGun && isHealthy) {
+//            Player target = getWeakPlayer(gameMap.getOtherPlayerInfo(), me, inv.getGun().getRange());
+//            if (target != null) {
+//                hero.shoot(BaseBotLogic.getDirection(me, target));
+//                return;
+//            }
+//        }
 
         if (hasGun && BaseBotLogic.shootNearby(hero, gameMap, me, inv)) return;
 
