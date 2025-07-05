@@ -90,5 +90,9 @@
 
 **Không truy sát lan man — giữ vị trí là ưu tiên**
 
+### ---------------------SUPERMAN------------------------
 
+Chiến thuật tổng lực – kiểm soát toàn bản đồ, ứng biến linh hoạt
+
+Bot toàn năng, tự cân bằng giữa loot – combat – survival – di chuyển, phù hợp cho vòng hỗn chiến.
 
