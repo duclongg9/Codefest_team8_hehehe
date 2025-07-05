@@ -14,7 +14,7 @@ import jsclub.codefest.sdk.model.obstacles.Obstacle;
 import java.io.IOException;
 import java.util.*;
 
-import static BaseBotLogic.*;
+
 
 public class StepHandler_B {
 
@@ -28,11 +28,11 @@ public class StepHandler_B {
         boolean acted;
 
         // Hành vi cơ bản - chỉ thực hiện nếu trả về true (có hành động)
-        if ((acted = pickupGunIfNeeded(hero, map, me)) ||
-                (acted = avoidEnemies(hero, map, me)) ||
-                (acted = dodgeBulletIfTargeted(hero, map, me)) ||
-                (acted = shootNearby(hero, map, me, inv)) ||
-                (acted = breakChestIfNearby(hero, map, me))) return;
+        if ((acted = BaseBotLogic.pickupGunIfNeeded(hero, map, me)) ||
+                (acted = BaseBotLogic.avoidEnemies(hero, map, me)) ||
+                (acted = BaseBotLogic.dodgeBulletIfTargeted(hero, map, me)) ||
+                (acted = BaseBotLogic.shootNearby(hero, map, me, inv)) ||
+                (acted = BaseBotLogic.breakChestIfNearby(hero, map, me))) return;
 
         // Nếu HP thấp, tìm item hồi máu gần nhất
         if (player.getHealth() < 40) {

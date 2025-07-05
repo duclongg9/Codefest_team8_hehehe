@@ -6,13 +6,12 @@ import jsclub.codefest.sdk.model.Inventory;
 import jsclub.codefest.sdk.model.players.Player;
 import jsclub.codefest.sdk.model.weapon.Weapon;
 import jsclub.codefest.sdk.model.weapon.Bullet;
-import jsclub.codefest.sdk.model.healing_items.HealingItem;
+import jsclub.codefest.sdk.model.support_items.SupportItem;
 import jsclub.codefest.sdk.model.npcs.Ally;
 
 import java.io.IOException;
 import java.util.*;
 
-import static BaseBotLogic.*;
 
 public class StepHandler_A {
     private static final int LOW_HP = 60;
@@ -36,11 +35,11 @@ public class StepHandler_A {
         lastPosition = me;
 
         // Kỹ năng cơ bản
-        if (pickupGunIfNeeded(hero, map, me)) return;
-        if (avoidEnemies(hero, map, me)) return;
-        if (dodgeBulletIfTargeted(hero, map, me)) return;
-        if (breakChestIfNearby(hero, map, me)) return;
-        if (shootNearby(hero, map, me, inv)) return;
+        if (BaseBotLogic.pickupGunIfNeeded(hero, map, me)) return;
+        if (BaseBotLogic.avoidEnemies(hero, map, me)) return;
+        if (BaseBotLogic.dodgeBulletIfTargeted(hero, map, me)) return;
+        if (BaseBotLogic.breakChestIfNearby(hero, map, me)) return;
+        if (BaseBotLogic.shootNearby(hero, map, me, inv)) return;
 
         // Hồi máu nếu HP thấp
         if (hp < LOW_HP && !inv.getListSupportItem().isEmpty()) {
@@ -49,7 +48,7 @@ public class StepHandler_A {
         }
 
         // Xây danh sách tránh
-        List<Node> avoid = buildAvoidList(map, !hasGun || hp < LOW_HP);
+        List<Node> avoid = BaseBotLogic.buildAvoidList(map, !hasGun || hp < LOW_HP);
         for (Bullet b : map.getListBullets()) {
             avoid.add(new Node(b.getDestinationX(), b.getDestinationY()));
         }
@@ -57,26 +56,26 @@ public class StepHandler_A {
         // Nhặt súng nếu chưa có
         if (!hasGun) {
             Weapon gun = getClosest(map.getAllGun(), me);
-            if (gun != null && goTo(hero, map, me, gun, avoid)) return;
+            if (gun != null && BaseBotLogic.goTo(hero, map, me, gun, avoid)) return;
         }
 
         // Nhặt vật phẩm hồi máu nếu HP yếu
         if (hp < LOW_HP) {
-            HealingItem heal = getClosest(map.getListHealingItems(), me);
-            if (heal != null && goTo(hero, map, me, heal, avoid)) return;
+            SupportItem heal = getClosest(map.getListSupportItems(), me);
+            if (heal != null && BaseBotLogic.goTo(hero, map, me, heal, avoid)) return;
         }
 
         // Tìm NPC đồng minh (vòng xanh) gần nhất và đến nếu gần
         Ally nearestAlly = getClosest(map.getListAllies(), me);
         if (nearestAlly != null && PathUtils.distance(me, nearestAlly) <= 5) {
-            if (goTo(hero, map, me, nearestAlly, avoid)) return;
+            if (BaseBotLogic.goTo(hero, map, me, nearestAlly, avoid)) return;
         }
 
         // Tìm mục tiêu yếu và gần
         if (hasGun && hp > AGGRESSIVE_HP) {
             Player target = map.getOtherPlayerInfo().stream()
                     .filter(p -> p.getHealth() != null && p.getHealth() < 60)
-                    .filter(p -> PathUtils.distance(me, p) <= inv.getGun().getRange())
+                    .filter(p -> PathUtils.distance(me, p) <= inv.getGun().getRange()[0])
                     .sorted(Comparator.comparingDouble(p -> p.getHealth()))
                     .findFirst().orElse(null);
             if (target != null) {
@@ -88,17 +87,17 @@ public class StepHandler_A {
         // Di chuyển về trung tâm nếu ở ngoài bo hoặc quá xa
         Node center = new Node(map.getMapSize() / 2, map.getMapSize() / 2);
         if (!PathUtils.checkInsideSafeArea(me, map.getSafeZone(), map.getMapSize()) || PathUtils.distance(me, center) > 6) {
-            if (goTo(hero, map, me, center, avoid)) return;
+            if (BaseBotLogic.goTo(hero, map, me, center, avoid)) return;
         }
 
         // Nếu bị kẹt nhiều bước thì di chuyển ngẫu nhiên
         if (stuckCount >= 3) {
-            moveRandom(hero, map, me, avoid);
+            BaseBotLogic.moveRandom(hero, map, me, avoid);
             stuckCount = 0;
             return;
         }
 
-        moveRandom(hero, map, me, avoid);
+        BaseBotLogic.moveRandom(hero, map, me, avoid);
     }
 
     private static <T extends Node> T getClosest(List<T> list, Node from) {

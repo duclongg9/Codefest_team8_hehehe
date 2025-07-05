@@ -6,19 +6,14 @@ import jsclub.codefest.sdk.algorithm.PathUtils;
 import jsclub.codefest.sdk.base.Node;
 import jsclub.codefest.sdk.model.GameMap;
 import jsclub.codefest.sdk.model.players.Player;
-import jsclub.codefest.sdk.model.support_items.SupportItem;
-import jsclub.codefest.sdk.model.weapon.Weapon;
 import jsclub.codefest.sdk.model.Inventory;
 
 import java.io.IOException;
 import java.util.List;
 
-public class StepHandler_Superman {
+public class StepHandler_Joker {
 
-    /* tham số chiến thuật */
-    private static final int SAFE_MARGIN = 3;
     private static final int LOW_HP = 80;
-    private static final int CRITICAL_HP = 60;
     private static final int ENGAGE_RANGE = 4;
 
     public static void handleStep(GameMap map, Hero hero) throws IOException {
@@ -30,7 +25,7 @@ public class StepHandler_Superman {
         Inventory inv = hero.getInventory();
         List<Node> avoid = BaseBotLogic.buildAvoidList(map, true);
 
-        /* 0. tự gỡ kẹt nếu stuck ≥ 6 step */
+        /* anti‑stuck */
         if (BaseBotLogic.isStuck(cur)) {
             BaseBotLogic.resolveStuck(hero, map, cur,
                     BaseBotLogic.getClosest(map.getObstaclesByTag("DESTRUCTIBLE"), cur),
@@ -38,41 +33,33 @@ public class StepHandler_Superman {
             return;
         }
 
-        /* 1. heal sớm */
+        /* heal */
         BaseBotLogic.useSupportIfLowHP(hero, inv, me.getHealth());
 
-        /* 2. né bullet & NPC */
+        /* né nguy hiểm */
         if (BaseBotLogic.dodgeBulletIfTargeted(hero, map, cur)) return;
         if (BaseBotLogic.avoidEnemies(hero, map, cur)) return;
 
-        /* 3. giữ trong bo với SAFE_MARGIN */
-        if (!PathUtils.checkInsideSafeArea(cur, map.getSafeZone() - SAFE_MARGIN, map.getMapSize())) {
+        /* giữ trong bo */
+        if (!PathUtils.checkInsideSafeArea(cur, map.getSafeZone(), map.getMapSize())) {
             Node center = new Node(map.getMapSize()/2, map.getMapSize()/2);
             BaseBotLogic.goTo(hero, map, cur, center, avoid);
             return;
         }
 
-        /* 4. loot súng nếu chưa có */
+        /* súng */
         if (BaseBotLogic.pickupGunIfNeeded(hero, map, cur)) return;
 
-        /* 5. phá chest gần nhất (≤2 ô) rồi loot */
+        /* chest & item */
         if (BaseBotLogic.breakChestIfNearby(hero, map, cur)) return;
-
-        /* 6. nhặt Item/Weapon nhiều điểm */
         if (BaseBotLogic.pickupValuableItem(hero, map, cur)) return;
 
-        /* 7. bắn địch trong ENGAGE_RANGE */
-        int maxR = inv.getGun()!=null && inv.getGun().getRange()!=null ?
+        /* bắn khi địch ≤ ENGAGE_RANGE (chỉ phòng thân) */
+        int gunR = inv.getGun()!=null && inv.getGun().getRange()!=null ?
                 Math.min(inv.getGun().getRange()[0], ENGAGE_RANGE) : 0;
-        if (maxR>0 && BaseBotLogic.shootNearby(hero, map, cur, inv)) return;
+        if (gunR>0 && BaseBotLogic.shootNearby(hero, map, cur, inv)) return;
 
-        /* 8. nếu HP thấp < CRITICAL_HP → tìm SupportItem */
-        if (me.getHealth() < CRITICAL_HP) {
-            SupportItem s = BaseBotLogic.getClosest(map.getListSupportItems(), cur);
-            if (s != null && BaseBotLogic.goTo(hero, map, cur, s, avoid)) return;
-        }
-
-        /* 9. không việc gì làm → đi random trong bo */
+        /* đi dạo lành mạnh */
         BaseBotLogic.moveRandom(hero, map, cur, avoid);
     }
 }
