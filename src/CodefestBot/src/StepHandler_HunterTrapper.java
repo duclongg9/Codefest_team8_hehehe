@@ -46,7 +46,18 @@ public class StepHandler_HunterTrapper {
             return;
         }
 
-        // 4. Nếu ngoài bo → quay về vùng sáng
+//        // 3. Giữ khu vực trung tâm loot (rương/súng)
+//        Weapon nearbyGun = BaseBotLogic.getClosest(gameMap.getAllGun(), me);
+//        if (nearbyGun != null && PathUtils.distance(me, nearbyGun) < 4 && BaseBotLogic.goTo(hero, gameMap, me, nearbyGun, avoid)) return;
+
+        // 4. Nếu có player đến gần và yếu → tấn công
+//        Player prey = getWeakApproachingPlayer(gameMap.getOtherPlayerInfo(), me, inv.getGun() != null ? inv.getGun().getRange() : 3);
+//        if (prey != null) {
+//            hero.shoot(BaseBotLogic.getDirection(me, prey));
+//            return;
+//        }
+
+        // 5. Luôn đảm bảo ở trong bo
         if (!PathUtils.checkInsideSafeArea(me, gameMap.getSafeZone(), gameMap.getMapSize())) {
             Node center = new Node(gameMap.getMapSize() / 2, gameMap.getMapSize() / 2);
             String path = PathUtils.getShortestPath(gameMap, avoid, me, center, true);
