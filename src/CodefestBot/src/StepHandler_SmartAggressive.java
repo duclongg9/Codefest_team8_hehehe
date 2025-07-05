@@ -35,6 +35,9 @@ public class StepHandler_SmartAggressive {
             if (gun != null && BaseBotLogic.goTo(hero, gameMap, me, gun, avoid)) return;
         }
 
+        // 1b. Nhặt vật phẩm giá trị cao nếu tiện
+        if (BaseBotLogic.pickupValuableItem(hero, gameMap, me)) return;
+
         // 2. Loot SupportItem nếu máu < 50
         if (player.getHealth() < 50) {
             SupportItem heal = BaseBotLogic.getClosest(gameMap.getListSupportItems(), me);

@@ -14,12 +14,16 @@ public class StepHandler_Template {
 
         Node me = new Node(map.getCurrentPlayer().getX(), map.getCurrentPlayer().getY());
         Inventory inv = hero.getInventory();
-        //Nhặt súng
+        //Nhặt súng nếu chưa có
         if (BaseBotLogic.pickupGunIfNeeded(hero, map, me)) return;
-        //Tấn công địch
-        if (BaseBotLogic.avoidEnemies(hero, map, me)) return;
-        //Tấn công kẻ địch ở gần
+
+        //Nhặt vật phẩm nhiều điểm
+        if (BaseBotLogic.pickupValuableItem(hero, map, me)) return;
+        //Bắn kẻ địch gần trước khi tránh
         if (BaseBotLogic.shootNearby(hero, map, me, inv)) return;
+
+        //Tránh enemy áp sát
+        if (BaseBotLogic.avoidEnemies(hero, map, me)) return;
 
         if (BaseBotLogic.breakChestIfNearby(hero, map, me)) return;
 

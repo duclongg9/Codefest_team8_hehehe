@@ -38,6 +38,8 @@ public class StepHandler_HunterTrapper {
         // 2. Nếu chưa có súng → ưu tiên loot
         if (BaseBotLogic.pickupGunIfNeeded(hero, gameMap, me))
             return;
+        // 2b. Nhặt vật phẩm giá trị cao
+        if (BaseBotLogic.pickupValuableItem(hero, gameMap, me)) return;
 
         // 3. Nếu có enemy yếu đi vào vùng mình giữ → bắn
         Player prey = getWeakApproachingPlayer(gameMap.getOtherPlayerInfo(), me, getGunRange(inv));

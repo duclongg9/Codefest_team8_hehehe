@@ -33,6 +33,9 @@ public class StepHandler_ZoneDominator {
             if (gun != null && BaseBotLogic.goTo(hero, gameMap, me, gun, avoid)) return;
         }
 
+        // 1b. Nhặt vật phẩm giá trị cao
+        if (BaseBotLogic.pickupValuableItem(hero, gameMap, me)) return;
+
         // 2. Hồi máu nếu yếu
         if (player.getHealth() < SAFE_HP) {
             SupportItem heal = BaseBotLogic.getClosest(gameMap.getListSupportItems(), me);
